@@ -38,123 +38,117 @@ HAVING condition;
 
 **Question 1**
 --
--- Paste Question 1 here
+What is the count of male and female patients?
+Sample table: Patients Table
 
 ```sql
--- Paste your SQL code below for Question 1
+SELECT Gender, COUNT(*) AS TotalPatients 
+FROM Patients 
+GROUP BY Gender;
 ```
 
 **Output:**
 
-![Output1](output.png)
+```text
+Gender   TotalPatients
+------   -------------
+Female   5
+Male     5
+```
 
 **Question 2**
 ---
--- Paste Question 2 here
+How many patients are there in each age group category (e.g., under 20, 20-30, 30-40, etc.)?
+Sample table: Patients Table
 
 ```sql
--- Paste your SQL code below for Question 2
+SELECT 
+  CASE 
+    WHEN (strftime('%Y', 'now') - strftime('%Y', DateOfBirth)) < 20 THEN 'under 20'
+    WHEN (strftime('%Y', 'now') - strftime('%Y', DateOfBirth)) BETWEEN 20 AND 30 THEN '20-30'
+    WHEN (strftime('%Y', 'now') - strftime('%Y', DateOfBirth)) BETWEEN 31 AND 40 THEN '31-40'
+    WHEN (strftime('%Y', 'now') - strftime('%Y', DateOfBirth)) BETWEEN 41 AND 50 THEN '41-50'
+    ELSE 'Above 50'
+  END AS AgeGroup,
+  COUNT(*) AS TotalPatients
+FROM Patients
+GROUP BY AgeGroup;
 ```
 
 **Output:**
 
-![Output2](output.png)
+```text
+AgeGroup   TotalPatients
+--------   -------------
+20-30      1
+31-40      5
+41-50      3
+Above 50   1
+```
 
 **Question 3**
 ---
--- Paste Question 3 here
+How many doctors specialize in each medical specialty?
+Sample table: Doctors Table
 
 ```sql
--- Paste your SQL code below for Question 3
+SELECT Specialty, COUNT(*) AS TotalDoctors 
+FROM Doctors 
+GROUP BY Specialty;
 ```
 
 **Output:**
 
-![Output3](output.png)
+```text
+Specialty         TotalDoctors
+---------         ------------
+Gastroenterology  1
+Neurology         1
+Obstetrics        3
+Ophthalmology     1
+Orthopedics       1
+Pediatrics        2
+Urology           1
+```
 
 **Question 4**
 ---
--- Paste Question 4 here
+Write a SQL query to find the customer with longest name?
+Table: customer
 
 ```sql
--- Paste your SQL code below for Question 4
+SELECT name, LENGTH(name) AS length 
+FROM customer 
+ORDER BY length DESC 
+LIMIT 1;
 ```
 
 **Output:**
 
-![Output4](output.png)
+```text
+name          length
+----          ------
+Preeti Patel  12
+```
 
 **Question 5**
 ---
--- Paste Question 5 here
+Write a SQL query to find the youngest employee in the company?
+Table: employee
 
 ```sql
--- Paste your SQL code below for Question 5
+SELECT name AS Employee_Name, age AS Age 
+FROM employee 
+WHERE age = (SELECT MIN(age) FROM employee);
 ```
 
 **Output:**
 
-![Output5](output.png)
-
-**Question 6**
----
--- Paste Question 6 here
-
-```sql
--- Paste your SQL code below for Question 6
+```text
+Employee_Name   Age
+-------------   ---
+Peter           32
 ```
-
-**Output:**
-
-![Output6](output.png)
-
-**Question 7**
----
--- Paste Question 7 here
-
-```sql
--- Paste your SQL code below for Question 7
-```
-
-**Output:**
-
-![Output7](output.png)
-
-**Question 8**
----
--- Paste Question 8 here
-
-```sql
--- Paste your SQL code below for Question 8
-```
-
-**Output:**
-
-![Output8](output.png)
-
-**Question 9**
----
--- Paste Question 9 here
-
-```sql
--- Paste your SQL code below for Question 9
-```
-
-**Output:**
-
-![Output9](output.png)
-
-**Question 10**
----
--- Paste Question 10 here
-
-```sql
--- Paste your SQL code below for Question 10
-```
-
-**Output:**
-
-![Output10](output.png)
 
 
 ## RESULT
