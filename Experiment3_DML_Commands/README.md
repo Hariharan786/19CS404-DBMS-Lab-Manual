@@ -45,125 +45,147 @@ Used to retrieve records from a table.
 ```sql
 SELECT column1, column2 FROM table_name WHERE condition;
 ```
+
 **Question 1**
 --
--- Paste Question 1 here
+Write a SQL statement to Update the product_name to 'Premium Bread' whose product ID is 5 in the products table.
 
 ```sql
--- Paste your SQL code below for Question 1
+UPDATE products SET product_name = 'Premium Bread' WHERE product_id = 5;
 ```
 
 **Output:**
 
-![Output1](output.png)
+```text
+Rows affected: 1
+```
 
 **Question 2**
 ---
--- Paste Question 2 here
+Write a SQL statement to Increase the selling price per unit by 5% for product ID 15 who's sale is on '2023-01-31'.
 
 ```sql
--- Paste your SQL code below for Question 2
+UPDATE sales SET sell_price = sell_price * 1.05 WHERE product_id = 15 AND sale_date = '2023-01-31';
 ```
 
 **Output:**
 
-![Output2](output.png)
+```text
+Rows affected: 1
+```
 
 **Question 3**
 ---
--- Paste Question 3 here
+Write a SQL query to reduce the reorder level by 30% where cost price is more than 50 and quantity in stock is less than 100 in the products table.
 
 ```sql
--- Paste your SQL code below for Question 3
+UPDATE products SET reorder_lvl = reorder_lvl * 0.70 WHERE cost_price > 50 AND quantity < 100;
 ```
 
 **Output:**
 
-![Output3](output.png)
+```text
+Rows affected: 1
+```
 
 **Question 4**
 ---
--- Paste Question 4 here
+Write a SQL statement to Update the reorder level to 20 where the quantity in stock is less than 10 and product category is 'Snacks' in the products table.
 
 ```sql
--- Paste your SQL code below for Question 4
+UPDATE products SET reorder_lvl = 20 WHERE quantity < 10 AND category = 'Snacks';
 ```
 
 **Output:**
 
-![Output4](output.png)
+```text
+Rows affected: 1
+```
 
 **Question 5**
 ---
--- Paste Question 5 here
+Write a SQL statement to Increase the selling price by 15% in the products table where quantity in stock is less than 50 and supplier ID is 10.
 
 ```sql
--- Paste your SQL code below for Question 5
+UPDATE products SET sell_price = sell_price * 1.15 WHERE quantity < 50 AND supplier_id = 10;
 ```
 
 **Output:**
 
-![Output5](output.png)
+```text
+Rows affected: 1
+```
 
 **Question 6**
 ---
--- Paste Question 6 here
+Write a SQL query to Delete customers from 'customer' table where 'GRADE' is less than 2.
 
 ```sql
--- Paste your SQL code below for Question 6
+DELETE FROM customer WHERE GRADE < 2;
 ```
 
 **Output:**
 
-![Output6](output.png)
+```text
+Rows affected: 1
+```
 
 **Question 7**
 ---
--- Paste Question 7 here
+Write a SQL query to remove rows from the table 'customer' with the following condition -
+'cust_city' should begin with the letter 'L'.
 
 ```sql
--- Paste your SQL code below for Question 7
+DELETE FROM customer WHERE cust_city LIKE 'L%';
 ```
 
 **Output:**
 
-![Output7](output.png)
+```text
+Rows affected: 1
+```
 
 **Question 8**
 ---
--- Paste Question 8 here
+Write a SQL query to Delete customers from 'customer' table where 'OPENING_AMT' is between 4000 and 6000.
 
 ```sql
--- Paste your SQL code below for Question 8
+DELETE FROM customer WHERE OPENING_AMT BETWEEN 4000 AND 6000;
 ```
 
 **Output:**
 
-![Output8](output.png)
+```text
+Rows affected: 1
+```
 
 **Question 9**
 ---
--- Paste Question 9 here
+Write a SQL query to Delete customers from 'customer' table where 'AGENT_CODE' is either 'A003' or 'A008'.
 
 ```sql
--- Paste your SQL code below for Question 9
+DELETE FROM customer WHERE AGENT_CODE IN ('A003', 'A008');
 ```
 
 **Output:**
 
-![Output9](output.png)
+```text
+Rows affected: 1
+```
 
 **Question 10**
 ---
--- Paste Question 10 here
+Write a SQL query to delete a specific doctor from Doctors table whose ID is 1.
 
 ```sql
--- Paste your SQL code below for Question 10
+DELETE FROM Doctors WHERE doctor_id = 1;
 ```
 
 **Output:**
 
-![Output10](output.png)
+```text
+Rows affected: 1
+```
 
 ## RESULT
 Thus, the SQL queries to implement DML commands have been executed successfully.
