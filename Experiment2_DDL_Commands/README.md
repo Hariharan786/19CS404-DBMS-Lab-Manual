@@ -105,123 +105,261 @@ CREATE TABLE Table_Name (
 
 **Question 1**
 --
--- Paste Question 1 here
+create a table named jobs including columns job_id, job_title, min_salary and max_salary, and make sure that, the default value for job_title is blank and min_salary is 8000 and max_salary is NULL will be entered automatically at the time of insertion if no value assigned for the specified columns.
 
 ```sql
--- Paste your SQL code below for Question 1
+CREATE TABLE jobs (
+  job_id INTEGER PRIMARY KEY,
+  job_title TEXT DEFAULT '',
+  min_salary REAL DEFAULT 8000,
+  max_salary REAL DEFAULT NULL
+);
 ```
 
 **Output:**
 
-![Output1](output.png)
+```text
+cid  name        type     notnull  dflt_value  pk
+---  ----------  -------  -------  ----------  --
+0    job_id      INTEGER  0                    1 
+1    job_title   TEXT     0        ''          0 
+2    min_salary  REAL     0        8000        0 
+3    max_salary  REAL     0        NULL        0 
+```
 
 **Question 2**
 ---
--- Paste Question 2 here
+Insert the following students into the Student_details table:
+RollNo      Name        Gender      Subject     MARKS
+----------  ----------  ----------  ----------  ----------
+202            Ella King         F           Chemistry   87
+203            James Bond   M          Literature    78
 
 ```sql
--- Paste your SQL code below for Question 2
+INSERT INTO Student_details (RollNo, Name, Gender, Subject, MARKS) VALUES
+(202, 'Ella King', 'F', 'Chemistry', 87),
+(203, 'James Bond', 'M', 'Literature', 78);
 ```
 
 **Output:**
 
-![Output2](output.png)
+```text
+RollNo  Name        Gender  Subject     MARKS
+------  ----------  ------  ----------  -----
+202     Ella King   F       Chemistry   87   
+203     James Bond  M       Literature  78   
+```
 
 **Question 3**
 ---
--- Paste Question 3 here
+Insert the below data into the Customers table, allowing the City and ZipCode columns to take their default values.
+
+CustomerID  Name          Address
+----------  ------------  ----------
+304         Peter Parker  Spider St      
+
+Note: The City and ZipCode columns will use their default values.
 
 ```sql
--- Paste your SQL code below for Question 3
+INSERT INTO Customers (CustomerID, Name, Address) VALUES
+(304, 'Peter Parker', 'Spider St');
 ```
 
 **Output:**
 
-![Output3](output.png)
+```text
+CustomerID  Name          Address    City     ZipCode
+----------  ------------  ---------  -------  -------
+304         Peter Parker  Spider St  Chennai  600001 
+```
 
 **Question 4**
 ---
--- Paste Question 4 here
+Create a table named Products with the following columns:
+ProductID as INTEGER
+ProductName as TEXT
+Price as REAL
+Stock as INTEGER
 
 ```sql
--- Paste your SQL code below for Question 4
+CREATE TABLE Products (
+  ProductID INTEGER,
+  ProductName TEXT,
+  Price REAL,
+  Stock INTEGER
+);
 ```
 
 **Output:**
 
-![Output4](output.png)
+```text
+cid  name         type     notnull  dflt_value  pk
+---  -----------  -------  -------  ----------  --
+0    ProductID    INTEGER  0                    0 
+1    ProductName  TEXT     0                    0 
+2    Price        REAL     0                    0 
+3    Stock        INTEGER  0                    0 
+```
 
 **Question 5**
 ---
--- Paste Question 5 here
+Create a table named Invoices with the following constraints:
+InvoiceID as INTEGER should be the primary key.
+InvoiceDate as DATE.
+Amount as REAL should be greater than 0.
+DueDate as DATE should be greater than the InvoiceDate.
+OrderID as INTEGER should be a foreign key referencing Orders(OrderID).
 
 ```sql
--- Paste your SQL code below for Question 5
+CREATE TABLE Invoices (
+  InvoiceID INTEGER PRIMARY KEY,
+  InvoiceDate DATE,
+  Amount REAL CHECK (Amount > 0),
+  DueDate DATE CHECK (DueDate > InvoiceDate),
+  OrderID INTEGER,
+  FOREIGN KEY (OrderID) REFERENCES Orders(OrderID)
+);
 ```
 
 **Output:**
 
-![Output5](output.png)
+```text
+cid  name         type     notnull  dflt_value  pk
+---  -----------  -------  -------  ----------  --
+0    InvoiceID    INTEGER  0                    1 
+1    InvoiceDate  DATE     0                    0 
+2    Amount       REAL     0                    0 
+3    DueDate      DATE     0                    0 
+4    OrderID      INTEGER  0                    0 
+```
 
 **Question 6**
 ---
--- Paste Question 6 here
+Create a new table named orders with the following specifications:
+ord_id as TEXT with a length of 4.
+item_id as TEXT.
+ord_date as DATE.
+ord_qty as INTEGER.
+cost as INTEGER.
+The primary key is a composite key consisting of item_id and ord_date.
+ord_id and item_id should not accept NULL
 
 ```sql
--- Paste your SQL code below for Question 6
+CREATE TABLE orders (
+  ord_id TEXT(4) NOT NULL,
+  item_id TEXT NOT NULL,
+  ord_date DATE,
+  ord_qty INTEGER,
+  cost INTEGER,
+  PRIMARY KEY (item_id, ord_date)
+);
 ```
 
 **Output:**
 
-![Output6](output.png)
+```text
+cid  name      type     notnull  dflt_value  pk
+---  --------  -------  -------  ----------  --
+0    ord_id    TEXT(4)  1                    0 
+1    item_id   TEXT     1                    1 
+2    ord_date  DATE     0                    2 
+3    ord_qty   INTEGER  0                    0 
+4    cost      INTEGER  0                    0 
+```
 
 **Question 7**
 ---
--- Paste Question 7 here
+Write an SQL query to add two new columns, department_id and manager_id, to the table employee with datatype of INTEGER. The manager_id column should have a default value of NULL.
 
 ```sql
--- Paste your SQL code below for Question 7
+ALTER TABLE employee ADD department_id INTEGER;
+ALTER TABLE employee ADD manager_id INTEGER DEFAULT NULL;
 ```
 
 **Output:**
 
-![Output7](output.png)
+```text
+cid  name           type     notnull  dflt_value  pk
+---  -------------  -------  -------  ----------  --
+0    id             INTEGER  0                    1 
+1    name           TEXT     0                    0 
+2    department_id  INTEGER  0                    0 
+3    manager_id     INTEGER  0        NULL        0 
+```
 
 **Question 8**
 ---
--- Paste Question 8 here
+Insert all students from Archived_students table into the Student_details table.
+
+cid         name        type        notnull     dflt_value  pk
+----------  ----------  ----------  ----------  ----------  ----------
+0           RollNo      INT           0                       1
+1           Name        VARCHAR(100)  0                       0
+2           Gender      VARCHAR(10)   0                       0
+3           Subject     VARCHAR(50)   0                       0
+4           MARKS       INT           0                       0
 
 ```sql
--- Paste your SQL code below for Question 8
+INSERT INTO Student_details (RollNo, Name, Gender, Subject, MARKS)
+SELECT RollNo, Name, Gender, Subject, MARKS FROM Archived_students;
 ```
 
 **Output:**
 
-![Output8](output.png)
+```text
+RollNo  Name         Gender  Subject  MARKS
+------  -----------  ------  -------  -----
+204     Alice Smith  F       Math     90   
+```
 
 **Question 9**
 ---
--- Paste Question 9 here
+Write an SQL query to change the name of the column id to employee_id in the table employee.
 
 ```sql
--- Paste your SQL code below for Question 9
+ALTER TABLE employee RENAME COLUMN id TO employee_id;
 ```
 
 **Output:**
 
-![Output9](output.png)
+```text
+cid  name           type     notnull  dflt_value  pk
+---  -------------  -------  -------  ----------  --
+0    employee_id    INTEGER  0                    1 
+1    name           TEXT     0                    0 
+2    department_id  INTEGER  0                    0 
+3    manager_id     INTEGER  0        NULL        0 
+```
 
 **Question 10**
 ---
--- Paste Question 10 here
+Create a table named ProjectAssignments with the following constraints:
+AssignmentID as INTEGER should be the primary key.
+EmployeeID as INTEGER should be a foreign key referencing Employees(EmployeeID).
+ProjectID as INTEGER should be a foreign key referencing Projects(ProjectID).
+AssignmentDate as DATE should be NOT NULL.
 
 ```sql
--- Paste your SQL code below for Question 10
+CREATE TABLE ProjectAssignments (
+  AssignmentID INTEGER PRIMARY KEY,
+  EmployeeID INTEGER,
+  ProjectID INTEGER,
+  AssignmentDate DATE NOT NULL,
+  FOREIGN KEY (EmployeeID) REFERENCES Employees(EmployeeID),
+  FOREIGN KEY (ProjectID) REFERENCES Projects(ProjectID)
+);
 ```
 
 **Output:**
 
-![Output10](output.png)
+```text
+cid  name            type     notnull  dflt_value  pk
+---  --------------  -------  -------  ----------  --
+0    AssignmentID    INTEGER  0                    1 
+1    EmployeeID      INTEGER  0                    0 
+2    ProjectID       INTEGER  0                    0 
+3    AssignmentDate  DATE     1                    0 
+```
 
 
 ## RESULT
