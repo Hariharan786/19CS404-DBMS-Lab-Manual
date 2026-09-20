@@ -38,123 +38,209 @@ DROP VIEW view_name;
 
 **Question 1**
 --
--- Paste Question 1 here
+Write a SQL query to Retrieve the medications with dosages equal to the lowest dosage
+Table Name: Medications
 
 ```sql
--- Paste your SQL code below for Question 1
+SELECT medication_id, medication_name, dosage 
+FROM Medications 
+WHERE dosage = (SELECT MIN(dosage) FROM Medications);
 ```
 
 **Output:**
 
-![Output1](output.png)
+```text
+medication_id  medication_name  dosage
+-------------  ---------------  ------
+2              Ibuprofen        200mg
+```
 
 **Question 2**
 ---
--- Paste Question 2 here
+From the following tables, write a SQL query to find all the orders generated in New York city. Return ord_no, purch_amt, ord_date, customer_id and salesman_id.
+Tables: SALESMAN, ORDERS
 
 ```sql
--- Paste your SQL code below for Question 2
+SELECT ord_no, purch_amt, ord_date, customer_id, salesman_id 
+FROM ORDERS 
+WHERE salesman_id IN (
+    SELECT salesman_id FROM SALESMAN WHERE city = 'New York'
+);
 ```
 
 **Output:**
 
-![Output2](output.png)
+```text
+ord_no  purch_amt  ord_date    customer_id  salesman_id
+------  ---------  ----------  -----------  -----------
+70001   150.5      2012-10-05  3005         5002
+70002   270.65     2012-09-10  3001         5005
+```
 
 **Question 3**
 ---
--- Paste Question 3 here
+Write a SQL query to retrieve all columns from the CUSTOMERS table for customers whose salary is LESS than $2500.
+Sample table: CUSTOMERS
 
 ```sql
--- Paste your SQL code below for Question 3
+SELECT * FROM CUSTOMERS WHERE SALARY < 2500;
 ```
 
 **Output:**
 
-![Output3](output.png)
+```text
+ID  NAME     AGE  ADDRESS    SALARY
+--  ----     ---  -------    ------
+1   Ramesh   32   Ahmedabad  2000
+2   Khilan   25   Delhi      1500
+3   Kaushik  23   Kota       2000
+```
 
 **Question 4**
 ---
--- Paste Question 4 here
+Write a SQL query that retrieves the names of students and their corresponding grades, where the grade is equal to the maximum grade achieved in each subject.
+Sample table: GRADES
 
 ```sql
--- Paste your SQL code below for Question 4
+SELECT student_name, grade 
+FROM GRADES g1
+WHERE grade = (
+    SELECT MAX(grade) 
+    FROM GRADES g2 
+    WHERE g1.subject = g2.subject
+);
 ```
 
 **Output:**
 
-![Output4](output.png)
+```text
+student_name  grade
+------------  -----
+Charlie       95
+Emma          92
+John          85
+```
 
 **Question 5**
 ---
--- Paste Question 5 here
+Write a SQL query to Retrieve the names of customers who have a phone number that is not shared with any other customer.
+SAMPLE TABLE: customer
 
 ```sql
--- Paste your SQL code below for Question 5
+SELECT name 
+FROM customer 
+WHERE phone IN (
+    SELECT phone FROM customer GROUP BY phone HAVING COUNT(*) = 1
+);
 ```
 
 **Output:**
 
-![Output5](output.png)
+```text
+name
+------------
+Aarti Desai
+Vivek Sharma
+Nisha Patel
+Rajesh Singh
+Radha Iyer
+```
 
 **Question 6**
 ---
--- Paste Question 6 here
+Write a SQL query to retrieve all columns from the CUSTOMERS table for customers whose AGE is LESS than 30.
+Sample table: CUSTOMERS
 
 ```sql
--- Paste your SQL code below for Question 6
+SELECT * FROM CUSTOMERS WHERE AGE < 30;
 ```
 
 **Output:**
 
-![Output6](output.png)
+```text
+ID  NAME      AGE  ADDRESS    SALARY
+--  ----      ---  -------    ------
+2   Khilan    25   Delhi      1500
+3   Kaushik   23   Kota       2000
+4   Chaitali  25   Mumbai     6500
+5   Hardik    27   Bhopal     8500
+6   Komal     22   Hyderabad  4500
+7   Muffy     24   Indore     10000
+```
 
 **Question 7**
 ---
--- Paste Question 7 here
+Write a SQL query to retrieve all columns from the CUSTOMERS table for customers whose salary is greater than $4500.
+Sample table: CUSTOMERS
 
 ```sql
--- Paste your SQL code below for Question 7
+SELECT * FROM CUSTOMERS WHERE SALARY > 4500;
 ```
 
 **Output:**
 
-![Output7](output.png)
+```text
+ID  NAME      AGE  ADDRESS    SALARY
+--  ----      ---  -------    ------
+4   Chaitali  25   Mumbai     6500
+5   Hardik    27   Bhopal     8500
+7   Muffy     24   Indore     10000
+```
 
 **Question 8**
 ---
--- Paste Question 8 here
+Write a SQL query to retrieve all columns from the CUSTOMERS table for customers whose Address as Delhi
+Sample table: CUSTOMERS
 
 ```sql
--- Paste your SQL code below for Question 8
+SELECT * FROM CUSTOMERS WHERE ADDRESS = 'Delhi';
 ```
 
 **Output:**
 
-![Output8](output.png)
+```text
+ID  NAME    AGE  ADDRESS  SALARY
+--  ----    ---  -------  ------
+2   Khilan  25   Delhi    1500
+```
 
 **Question 9**
 ---
--- Paste Question 9 here
+Write a SQL query to retrieve all columns from the CUSTOMERS table for customers whose salary is EQUAL TO $1500.
+Sample table: CUSTOMERS
 
 ```sql
--- Paste your SQL code below for Question 9
+SELECT * FROM CUSTOMERS WHERE SALARY = 1500;
 ```
 
 **Output:**
 
-![Output9](output.png)
+```text
+ID  NAME    AGE  ADDRESS  SALARY
+--  ----    ---  -------  ------
+2   Khilan  25   Delhi    1500
+```
 
 **Question 10**
 ---
--- Paste Question 10 here
+From the following tables write a SQL query to count the number of customers with grades above the average in New York City. Return grade and count.
+customer table
 
 ```sql
--- Paste your SQL code below for Question 10
+SELECT grade, COUNT(*) AS count 
+FROM customer 
+WHERE city = 'New York City' 
+  AND grade > (SELECT AVG(grade) FROM customer WHERE city = 'New York City')
+GROUP BY grade;
 ```
 
 **Output:**
 
-![Output10](output.png)
+```text
+grade  count
+-----  -----
+3      2
+```
 
 
 ## RESULT
